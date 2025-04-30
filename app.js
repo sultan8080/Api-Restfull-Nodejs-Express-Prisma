@@ -51,6 +51,22 @@ app.get("/api/products", async (req, res) => {
   }
 });
 
+// Récupérer un produit par ID (GET /api/products/:id)
+app.get("/api/products/:id", async (req, res) => {
+    try {
+        const { id } = req.params; 
+        const product = await prisma.product.findUnique({
+            where: {
+              id: parseInt(id),
+            },
+          });
+        res.status(200).json(product);
+    } catch (error) {
+      res.status(500).json({ error: "Erreur lors de la récupération", details: error.message });
+    }
+  });
+  
+
 // Mettre à jour un produit par ID (PATCH /api/products/:id)
 app.patch("/api/products/:id", async (req, res) => {
   try {
