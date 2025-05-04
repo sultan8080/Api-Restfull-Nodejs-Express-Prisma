@@ -13,11 +13,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model product{
-  id          Int     @id @default(autoincrement())
+model User {
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  password String
+  name     String
+  products Product[]
+  updatedAt DateTime @updatedAt
+}
+
+
+model Product {
+  id          Int       @id @default(autoincrement())
   name        String
   description String
   price       Int
-  inStock     Boolean  @default(false)
-  createdAt DateTime @default(now())
+  inStock     Boolean
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id])
+  updatedAt   DateTime  @updatedAt
 }
