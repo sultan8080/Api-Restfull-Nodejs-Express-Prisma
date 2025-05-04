@@ -1,9 +1,12 @@
 const express = require("express");
 const { PrismaClient } = require("@prisma/client");
 const cors = require("cors");
+const productRoutes = require("./routes/route_product");
+const userRoutes = require("./routes/route_user");
 
 const app = express();
 const prisma = new PrismaClient();
+
 
 // Middleware pour parser les requêtes JSON
 app.use(express.json());

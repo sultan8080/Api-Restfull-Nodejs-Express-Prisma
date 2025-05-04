@@ -1,0 +1,19 @@
+npx prisma generate
+npx prisma db push
+
+npx prisma migrate reset
+
+npx prisma migrate dev --name add-user-table
+npx prisma migrate deploy
+
+npx prisma migrate reset
+
+px prisma migrate dev	**Development	Creates and applies new migration with seeding/testing
+npx prisma migrate reset	**Development	Drops DB, applies all migrations, runs optional seed
+npx prisma migrate deploy	**Production/Staging	Applies pending migrations without dropping data
+
+
+utiliser Faker data inside database prisma/seed.js
+prisma/seed.js
+npx prisma migrate dev --name ajout-produits
+npx prisma db seed
