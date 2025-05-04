@@ -15,5 +15,13 @@ npx prisma migrate deploy	**Production/Staging	Applies pending migrations withou
 
 utiliser Faker data inside database prisma/seed.js
 prisma/seed.js
+inside add -- 
+package.json script {
+        "seed": "node prisma/seed.js"
+}
+
 npx prisma migrate dev --name ajout-produits
-npx prisma db seed
+npm run seed
+
+
+npx prisma migrate dev
