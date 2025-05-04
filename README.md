@@ -1,24 +1,33 @@
-# Product API
-
-Une API RESTful construite avec **Node.js**, **Express**, **Prisma** et **PostgreSQL**, permettant la gestion CRUD de produits. 
+Une API RESTful construite avec **Node.js**, **Express**, **Prisma** et **PostgreSQL**, permettant la gestion CRUD des produits ainsi que la gestion des utilisateurs.
 
 ---
 
 ## Fonctionnalités
 
-L'API prend en charge les opérations suivantes :
+### Produits (`/api/products`)
+- `POST /api/products` → Créer un produit
+- `GET /api/products` → Obtenir tous les produits
+- `GET /api/products/:id` → Obtenir un produit par ID
+- `PATCH /api/products/:id` → Mettre à jour un produit
+- `DELETE /api/products/:id` → Supprimer un produit
 
-- **Créer** un produit (`POST /api/products`)
-- **Lire tous les produits** (`GET /api/products`)
-- **Lire un produit spécifique** (`GET /api/products/:id`)
-- **Mettre à jour** un produit (`PATCH /api/products/:id`)
-- **Supprimer** un produit (`DELETE /api/products/:id`)
+### Utilisateurs (`/api/users`)
+- `GET /api/users` → Obtenir tous les utilisateurs
+- `GET /api/users/:id` → Obtenir un utilisateur par ID
 
+> ✅ Toutes les routes ont été testées avec **Postman**.
+
+---
 
 ## Technologies utilisées
 
-- **Node.js** + **Express** (serveur backend)
-- **Prisma ORM** (connexion à la base de données PostgreSQL)
-- **PostgreSQL** (base de données relationnelle)
-- **CORS** (pour les requêtes cross-origin, utile avec Angular ou autre frontend)
-
+- **Node.js** – Runtime JavaScript
+- **Express** – Framework web minimaliste
+- **Prisma** – ORM pour PostgreSQL
+- **PostgreSQL** – Base de données relationnelle
+- **bcryptjs** – Hachage des mots de passe
+- **jsonwebtoken** – Authentification via JWT
+- **CORS** – Autorise les requêtes cross-origin
+- **dotenv** – Chargement des variables d’environnement
+- **nodemon** – Redémarrage automatique du serveur en développement
+- **Postman** – Outil de test des API
