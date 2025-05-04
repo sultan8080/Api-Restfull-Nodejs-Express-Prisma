@@ -34,7 +34,7 @@ exports.getProductById = async (req, res) => {
     const { id } = req.params;
     const product = await prisma.product.findUnique({
       where: { id: parseInt(id) },
-      include: { user: true }, // user:true - pas besoin token
+      include: { user: true }, 
     });
 
     if (!product) return res.status(404).json({ error: "Produit non trouvé." });
@@ -45,7 +45,7 @@ exports.getProductById = async (req, res) => {
   }
 };
 
-// Mettre à jour un produit
+// Mettre à jour un produit (identifiant utilisateur : jeton requis)
 exports.updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
