@@ -19,9 +19,17 @@ inside add --
 package.json script {
         "seed": "node prisma/seed.js"
 }
+npm run seed
+
+
+if I add directly 
+ "prisma": {
+  "seed": "node prisma/seed.js"
+}
+
+npx prisma db seed
 
 npx prisma migrate dev --name ajout-produits
-npm run seed
 
 
 npx prisma migrate dev

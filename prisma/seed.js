@@ -3,6 +3,11 @@ const bcrypt = require('bcryptjs'); // Ajout de bcryptjs pour hacher les mots de
 const prisma = new PrismaClient();
 
 async function main() {
+
+// Supprime les données existantes
+  await prisma.product.deleteMany();
+  await prisma.user.deleteMany();
+
   // Hachage des mots de passe avant de les enregistrer
   const hashedPassword1 = await bcrypt.hash('123456', 10);
   const hashedPassword2 = await bcrypt.hash('567890', 10); 
@@ -46,7 +51,7 @@ async function main() {
         description: 'Description du produit C',
         price: 300,
         inStock: false,
-        userId: user1.id,
+        userId: user2.id,
       },
       {
         name: 'Produit D',
@@ -60,7 +65,7 @@ async function main() {
         description: 'Description du produit E',
         price: 600,
         inStock: false,
-        userId: user1.id,
+        userId: user2.id,
       },
     ],
   });
