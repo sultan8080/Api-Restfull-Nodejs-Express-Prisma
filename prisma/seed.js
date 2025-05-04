@@ -1,25 +1,30 @@
 const { PrismaClient } = require('@prisma/client');
+const bcrypt = require('bcryptjs'); // Ajout de bcryptjs pour hacher les mots de passe
 const prisma = new PrismaClient();
 
 async function main() {
-  // Créer des utilisateurs fictifs
+  // Hachage des mots de passe avant de les enregistrer
+  const hashedPassword1 = await bcrypt.hash('123456', 10);
+  const hashedPassword2 = await bcrypt.hash('567890', 10); 
+
+  // Création des utilisateurs avec des mots de passe hachés
   const user1 = await prisma.user.create({
     data: {
-      email: 'test1@example.com',
+      email: 'user1@example.com',
       name: 'Utilisateur 1',
-      password: '123456',
+      password: hashedPassword1,
     },
   });
 
   const user2 = await prisma.user.create({
     data: {
-      email: 'test2@example.com',
+      email: 'user2@example.com',
       name: 'Utilisateur 2',
-      password: '123456',
+      password: hashedPassword2,
     },
   });
 
-  // Créer des produits pour l'utilisateur 1
+  // Création des produits pour l'utilisateur 1
   await prisma.product.createMany({
     data: [
       {
@@ -36,7 +41,6 @@ async function main() {
         inStock: false,
         userId: user1.id,
       },
-
       {
         name: 'Produit C',
         description: 'Description du produit C',
@@ -62,14 +66,12 @@ async function main() {
   });
 }
 
-
-
-
+// Exécution de la fonction principale avec gestion des erreurs
 main()
   .catch((e) => {
     console.error(e);
     process.exit(1);
   })
   .finally(async () => {
-    await prisma.$disconnect();
+    await prisma.$disconnect(); 
   });
